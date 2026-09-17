@@ -1,0 +1,265 @@
+/* ==========================================================================
+   03-tugas-style.css
+   Komponen: Kartu Pemutar Media Kuliah (BEM: .kartu-media)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1) RESET GLOBAL — model kotak border-box
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body,
+h1, h2, h3,
+p,
+figure {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+img,
+picture,
+video,
+audio,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   2) TOKEN DESAIN & GAYA DASAR HALAMAN
+   -------------------------------------------------------------------------- */
+:root {
+  --tinta: #0f1f2e;
+  --tinta-lembut: #3a4e62;
+  --kertas: #eef1ec;
+  --kartu-bg: #ffffff;
+  --aksen: #c17f2c;
+  --aksen-gelap: #8a5b1f;
+  --wajib: #a13d3d;
+  --wajib-latar: #fbeeee;
+  --teks-muted: #55606b;
+  --garis: #dfe3dd;
+
+  --radius-kartu: 14px;
+  --bayangan-dasar: 0 8px 24px rgba(15, 31, 46, 0.12), 0 1px 3px rgba(15, 31, 46, 0.08);
+  --bayangan-hover: 0 16px 32px rgba(15, 31, 46, 0.18), 0 3px 8px rgba(15, 31, 46, 0.1);
+  --transisi: 240ms ease;
+}
+
+body {
+  background-color: var(--kertas);
+  color: var(--tinta);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.halaman__kepala {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 1rem;
+}
+
+.halaman__kepala h1 {
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.2rem);
+  margin-bottom: 0.4rem;
+}
+
+.halaman__kepala p {
+  color: var(--teks-muted);
+  max-width: 62ch;
+}
+
+.halaman__kaki {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+  color: var(--teks-muted);
+  font-size: 0.85rem;
+}
+
+.halaman__kaki code {
+  background-color: var(--garis);
+  border-radius: 4px;
+  padding: 0.05rem 0.35rem;
+}
+
+/* --------------------------------------------------------------------------
+   3) TATA LETAK GALERI — margin terpusat, grid responsif
+   -------------------------------------------------------------------------- */
+.galeri-kartu {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* --------------------------------------------------------------------------
+   4) BLOK BEM: .kartu-media
+   -------------------------------------------------------------------------- */
+.kartu-media {
+  background-color: var(--kartu-bg);
+  border-radius: var(--radius-kartu);
+  box-shadow: var(--bayangan-dasar);
+  overflow: hidden;
+  transition: transform var(--transisi), box-shadow var(--transisi);
+}
+
+.kartu-media:hover,
+.kartu-media:focus-within {
+  transform: translateY(-4px);
+  box-shadow: var(--bayangan-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kartu-media {
+    transition: none;
+  }
+  .kartu-media:hover,
+  .kartu-media:focus-within {
+    transform: none;
+  }
+}
+
+/* -- Elemen: sampul (figure pembungkus <picture>) -- */
+.kartu-media__sampul {
+  position: relative;
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  background-color: var(--tinta);
+}
+
+.kartu-media__ilustrasi {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* -- Elemen: lencana status, hanya tampil pada modifier --wajib -- */
+.kartu-media__lencana {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background-color: var(--wajib);
+  color: #ffffff;
+  font-size: 0.78rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* -- Elemen: konten (padding pembungkus teks & pemutar) -- */
+.kartu-media__konten {
+  padding: 1.25rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* -- Elemen: kepala, judul, meta -- */
+.kartu-media__kepala {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.kartu-media__judul {
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 1.15rem;
+  line-height: 1.35;
+  color: var(--tinta);
+}
+
+.kartu-media__meta {
+  font-size: 0.85rem;
+  color: var(--teks-muted);
+}
+
+/* -- Elemen: pemutar video -- */
+.kartu-media__pemutar-video {
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--tinta);
+}
+
+.kartu-media__video {
+  width: 100%;
+  height: auto;
+}
+
+/* -- Elemen: pemutar audio -- */
+.kartu-media__pemutar-audio {
+  border-top: 1px solid var(--garis);
+  padding-top: 0.85rem;
+}
+
+.kartu-media__label {
+  font-size: 0.8rem;
+  color: var(--teks-muted);
+  margin-bottom: 0.4rem;
+}
+
+.kartu-media__audio {
+  width: 100%;
+}
+
+/* -- Elemen: deskripsi (gaya dasar, akan ditimpa di bagian 5) -- */
+.kartu-media__deskripsi {
+  font-size: 0.92rem;
+  color: var(--teks-muted);
+  font-weight: 400;
+  border-left: 3px solid transparent;
+  padding-left: 0;
+}
+
+/* ==========================================================================
+   5) DEMONSTRASI SPESIFISITAS
+   --------------------------------------------------------------------------
+   Aturan dasar di atas, ".kartu-media__deskripsi", memakai SATU kelas
+   sehingga bobot spesifisitasnya (a,b,c) = (0,1,0).
+
+   Aturan di bawah ini menggabungkan DUA kelas lewat kombinator turunan:
+   ".kartu-media--wajib .kartu-media__deskripsi" -> bobotnya (0,2,0).
+
+   Karena (0,2,0) lebih besar daripada (0,1,0), aturan ini otomatis menang
+   dan menimpa gaya deskripsi HANYA pada kartu yang memiliki kelas status
+   tambahan "kartu-media--wajib" — tanpa memakai !important dan tanpa
+   bergantung pada urutan penulisan di berkas ini.
+   ========================================================================== */
+.kartu-media--wajib .kartu-media__deskripsi {
+  color: var(--wajib);
+  font-weight: 600;
+  background-color: var(--wajib-latar);
+  border-left-color: var(--wajib);
+  padding-left: 0.75rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  border-radius: 0 6px 6px 0;
+}
