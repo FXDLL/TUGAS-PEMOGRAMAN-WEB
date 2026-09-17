@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Nama Mahasiswa - NIM">
+  <meta name="description" content="Daftar publikasi ilmiah dosen Departemen Teknik Informatika, Fakultas Teknik, Universitas Hasanuddin, beserta bidang keahlian dan metodologi riset.">
+  <title>Daftar Publikasi Penelitian Dosen &ndash; Teknik Informatika Unhas</title>
+
+  <style>
+    :root {
+      --tinta: #16233a;
+      --tinta-muda: #5b6878;
+      --aksen: #8c1c2b;
+      --garis: #c8d1dc;
+      --latar: #fbfbf9;
+      --sorot: #eef2f7;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 2rem 1.25rem 4rem;
+      background-color: var(--latar);
+      color: var(--tinta);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .bungkus { max-width: 58rem; margin: 0 auto; }
+
+    /* ---------- Kop instansi ---------- */
+    .kop {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 3px double var(--aksen);
+    }
+
+    .kop svg { flex: 0 0 auto; }
+
+    .kop h1 { margin: 0 0 .25rem; font-size: 1.55rem; line-height: 1.25; }
+
+    .kop p { margin: 0; color: var(--tinta-muda); font-size: .95rem; }
+
+    h2 {
+      margin: 2.75rem 0 .75rem;
+      font-size: 1.25rem;
+      border-left: 4px solid var(--aksen);
+      padding-left: .6rem;
+    }
+
+    p { max-width: 68ch; }
+
+    /* ---------- Tabel publikasi ---------- */
+    .pembungkus-tabel { overflow-x: auto; }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 46rem;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: .9rem;
+    }
+
+    caption {
+      caption-side: top;
+      text-align: left;
+      padding-bottom: .6rem;
+      color: var(--tinta-muda);
+      font-style: italic;
+    }
+
+    th, td {
+      border: 1px solid var(--garis);
+      padding: .5rem .65rem;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    thead th { background-color: var(--sorot); }
+
+    tbody th { background-color: #fff; font-weight: 600; }
+
+    tfoot th, tfoot td {
+      background-color: var(--sorot);
+      border-top: 2px solid var(--aksen);
+    }
+
+    .angka { text-align: right; font-variant-numeric: tabular-nums; }
+
+    /* ---------- Daftar bidang keahlian ---------- */
+    ol { padding-left: 1.4rem; }
+
+    ol > li { margin-bottom: .75rem; font-weight: 600; }
+
+    ol ul { margin: .3rem 0 0; padding-left: 1.2rem; }
+
+    ol ul li { font-weight: 400; }
+
+    /* ---------- Figure metodologi ---------- */
+    figure {
+      margin: 1.25rem 0 0;
+      padding: 1rem;
+      border: 1px solid var(--garis);
+      background-color: #fff;
+    }
+
+    figure svg { display: block; width: 100%; height: auto; }
+
+    figcaption {
+      margin-top: .75rem;
+      padding-top: .6rem;
+      border-top: 1px solid var(--garis);
+      color: var(--tinta-muda);
+      font-size: .9rem;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--garis);
+      color: var(--tinta-muda);
+      font-size: .88rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bungkus">
+
+    <!-- ============================================================
+         KOP HALAMAN
+         Logo dibuat sebagai SVG sebaris agar berkas tetap mandiri.
+         Ganti blok <svg> ini dengan <img src="logo-unhas.png" alt="...">
+         apabila logo resmi Unhas ingin dipakai.
+         ============================================================ -->
+    <header class="kop">
+      <svg width="76" height="76" viewBox="0 0 76 76" role="img"
+           aria-labelledby="judul-logo">
+        <title id="judul-logo">Lambang Universitas Hasanuddin</title>
+        <circle cx="38" cy="38" r="36" fill="#fbfbf9" stroke="#8c1c2b" stroke-width="2"></circle>
+        <circle cx="38" cy="38" r="29" fill="none" stroke="#16233a" stroke-width="1"></circle>
+        <path d="M38 16 L52 34 H24 Z" fill="#8c1c2b"></path>
+        <rect x="24" y="38" width="28" height="4" fill="#16233a"></rect>
+        <path d="M24 46 h28 v3 h-28 z M28 53 h20 v3 h-20 z" fill="#5b6878"></path>
+        <text x="38" y="67" text-anchor="middle" font-family="Georgia, serif"
+              font-size="7.5" fill="#8c1c2b">UNHAS</text>
+      </svg>
+
+      <div>
+        <h1>Daftar Publikasi Penelitian Dosen</h1>
+        <p>Departemen Teknik Informatika &middot; Fakultas Teknik &middot; Universitas Hasanuddin</p>
+        <p>Jalan Poros Malino km. 6, Bontomarannu, Gowa 92172, Sulawesi Selatan</p>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- ============================================================
+           BAGIAN 1: Deskripsi riset.
+           Persyaratan karakter khusus dipenuhi dengan entitas berikut:
+           &amp;   (ampersand)        &lt; &gt; (kurung sudut)
+           &plusmn; (plus-minus)      &deg;   (derajat)
+           &alpha;  (alfa)            &le;    (kurang dari atau sama dengan)
+           &hellip; (elipsis)         &copy;  (hak cipta, lihat footer)
+           ============================================================ -->
+      <section id="ringkasan-riset">
+        <h2>Ringkasan Arah Riset Departemen</h2>
+
+        <p>
+          Kegiatan riset Departemen Teknik Informatika diarahkan pada
+          pemanfaatan <em>Machine Learning &amp; Internet of Things</em> untuk
+          persoalan kewilayahan Sulawesi Selatan, khususnya pemantauan pesisir
+          dan pengelolaan data kota Makassar. Model klasifikasi yang
+          dikembangkan diuji pada rentang suhu permukaan laut 26&deg;C hingga
+          32&deg;C dengan galat pengukuran sensor sebesar &plusmn;0,4 satuan,
+          sedangkan ambang signifikansi statistik ditetapkan pada
+          &alpha; &le; 0,05.
+        </p>
+
+        <p>
+          Luaran model disajikan ke publik melalui antarmuka web yang memakai
+          elemen semantik seperti <code>&lt;table&gt;</code> dan
+          <code>&lt;figure&gt;</code>, sehingga data tetap terbaca oleh
+          pembaca layar, mesin pengindeks, maupun perangkat bergerak dengan
+          jaringan terbatas. Agenda lanjutan mencakup kompresi model, efisiensi
+          daya simpul sensor, pemrosesan bahasa daerah, hingga tata kelola data
+          terbuka &hellip; yang seluruhnya diarahkan pada penerapan langsung di
+          lingkungan kampus dan pemerintah daerah.
+        </p>
+      </section>
+
+      <!-- ============================================================
+           BAGIAN 2: Tabel publikasi.
+           - thead memakai rowspan & colspan untuk tajuk dua tingkat
+           - tbody memakai rowspan untuk menggabungkan baris per dosen
+           - tfoot menampung rekapitulasi
+           - scope: col / colgroup / row / rowgroup
+
+           CATATAN: nama dosen dan data publikasi di bawah ini adalah
+           data contoh untuk keperluan latihan struktur tabel. Ganti
+           dengan data sebenarnya bila tugas menuntut data riil.
+           ============================================================ -->
+      <section id="tabel-publikasi">
+        <h2>Rekapitulasi Publikasi Ilmiah</h2>
+
+        <div class="pembungkus-tabel">
+          <table>
+            <caption>
+              Publikasi dosen periode 2023&ndash;2025, diurutkan berdasarkan
+              nama dosen. Data bersifat contoh; jumlah sitasi dihitung per
+              1 September 2026.
+            </caption>
+
+            <thead>
+              <tr>
+                <th scope="col" rowspan="2">No.</th>
+                <th scope="col" rowspan="2">Nama Dosen</th>
+                <th scope="colgroup" colspan="3">Data Publikasi</th>
+                <th scope="col" rowspan="2">Jumlah Sitasi</th>
+              </tr>
+              <tr>
+                <th scope="col">Judul</th>
+                <th scope="col">Jenis Luaran</th>
+                <th scope="col">Tahun</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <!-- Dosen 1: dua publikasi, sel identitas digabung (rowspan) -->
+              <tr>
+                <td rowspan="2" class="angka">1</td>
+                <th scope="rowgroup" rowspan="2">Dosen A, S.Kom., M.T.</th>
+                <td>Deteksi Anomali Sensor Kualitas Udara Berbasis Autoencoder</td>
+                <td>Jurnal Internasional (Q2)</td>
+                <td class="angka">2024</td>
+                <td class="angka">37</td>
+              </tr>
+              <tr>
+                <td>Optimasi Kompresi Model pada Perangkat Komputasi Tepi</td>
+                <td>Prosiding Terindeks</td>
+                <td class="angka">2025</td>
+                <td class="angka">12</td>
+              </tr>
+
+              <!-- Dosen 2: tiga publikasi -->
+              <tr>
+                <td rowspan="3" class="angka">2</td>
+                <th scope="rowgroup" rowspan="3">Dosen B, S.T., M.Kom.</th>
+                <td>Pemantauan Kualitas Air Pesisir dengan Jaringan Sensor Nirkabel</td>
+                <td>Jurnal Nasional (Sinta 2)</td>
+                <td class="angka">2023</td>
+                <td class="angka">28</td>
+              </tr>
+              <tr>
+                <td>Kerangka Tata Kelola Data Terbuka untuk Kota Cerdas</td>
+                <td>Jurnal Internasional (Q1)</td>
+                <td class="angka">2024</td>
+                <td class="angka">54</td>
+              </tr>
+              <tr>
+                <td>Purwarupa Papan Informasi Kualitas Udara Kampus Gowa</td>
+                <td>Paten Sederhana</td>
+                <td class="angka">2025</td>
+                <td class="angka">6</td>
+              </tr>
+
+              <!-- Dosen 3: satu publikasi, tanpa rowspan -->
+              <tr>
+                <td class="angka">3</td>
+                <th scope="row">Dosen C, M.Sc., Ph.D.</th>
+                <td>Pengenalan Entitas Bernama pada Teks Bahasa Bugis dan Makassar</td>
+                <td>Buku Referensi</td>
+                <td class="angka">2025</td>
+                <td class="angka">19</td>
+              </tr>
+            </tbody>
+
+            <tfoot>
+              <tr>
+                <th scope="row" colspan="5">Total sitasi seluruh publikasi</th>
+                <td class="angka">156</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           BAGIAN 3: Bidang keahlian.
+           Tingkat utama = ordered list (ol), tingkat dalam = unordered
+           list (ul) yang disarangkan di dalam <li>.
+           ============================================================ -->
+      <section id="bidang-keahlian">
+        <h2>Bidang Keahlian Dosen</h2>
+
+        <p>
+          Bidang keahlian diurutkan menurut prioritas pengembangan departemen,
+          dengan rincian topik pada tiap bidang.
+        </p>
+
+        <ol>
+          <li>
+            Kecerdasan Artifisial Terapan
+            <ul>
+              <li>Pembelajaran mendalam untuk data runtun waktu</li>
+              <li>Deteksi anomali pada aliran data sensor</li>
+              <li>Pemrosesan bahasa alami untuk bahasa daerah</li>
+            </ul>
+          </li>
+
+          <li>
+            Sistem Tersemat dan Internet of Things
+            <ul>
+              <li>Rancang bangun simpul sensor berdaya rendah</li>
+              <li>Protokol komunikasi nirkabel jarak jauh</li>
+              <li>Komputasi tepi untuk inferensi luring</li>
+            </ul>
+          </li>
+
+          <li>
+            Rekayasa Perangkat Lunak
+            <ul>
+              <li>Arsitektur layanan mikro</li>
+              <li>Pengujian otomatis dan integrasi berkelanjutan</li>
+              <li>Aksesibilitas web dan standardisasi konten</li>
+            </ul>
+          </li>
+
+          <li>
+            Sains Data dan Visualisasi
+            <ul>
+              <li>Praproses dan pembersihan data lingkungan</li>
+              <li>Analisis spasial wilayah pesisir berbasis peta</li>
+              <li>Penyajian data yang ramah pembaca layar</li>
+            </ul>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ============================================================
+           BAGIAN 4: Diagram alur metodologi riset dalam figure /
+           figcaption. Diagram dibuat sebagai SVG sebaris yang diberi
+           role="img", <title>, dan <desc> agar tetap aksesibel.
+           ============================================================ -->
+      <section id="metodologi">
+        <h2>Metodologi Riset</h2>
+
+        <p>
+          Seluruh publikasi di atas mengikuti alur kerja yang sama, mulai dari
+          perumusan masalah sampai diseminasi hasil, dengan satu putaran
+          perbaikan bila evaluasi belum memenuhi ambang batas.
+        </p>
+
+        <figure>
+          <svg viewBox="0 0 860 260" role="img" aria-labelledby="judul-alur ket-alur">
+            <title id="judul-alur">Diagram alur metodologi riset enam tahap</title>
+            <desc id="ket-alur">
+              Alur berurutan: perumusan masalah, pengumpulan data, praproses
+              data, pemodelan, evaluasi, lalu diseminasi. Dari tahap evaluasi
+              terdapat jalur umpan balik kembali ke tahap pemodelan.
+            </desc>
+
+            <defs>
+              <marker id="panah" viewBox="0 0 10 10" refX="9" refY="5"
+                      markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="#16233a"></path>
+              </marker>
+            </defs>
+
+            <g fill="#eef2f7" stroke="#16233a" stroke-width="2">
+              <rect x="10" y="30" width="120" height="70" rx="4"></rect>
+              <rect x="180" y="30" width="120" height="70" rx="4"></rect>
+              <rect x="350" y="30" width="120" height="70" rx="4"></rect>
+              <rect x="520" y="30" width="120" height="70" rx="4"></rect>
+              <rect x="690" y="30" width="120" height="70" rx="4"></rect>
+              <rect x="350" y="170" width="120" height="70" rx="4"></rect>
+            </g>
+
+            <g fill="#16233a" font-family="Helvetica, Arial, sans-serif"
+               font-size="14" text-anchor="middle">
+              <text x="70" y="60">Perumusan</text>
+              <text x="70" y="78">Masalah</text>
+
+              <text x="240" y="60">Pengumpulan</text>
+              <text x="240" y="78">Data</text>
+
+              <text x="410" y="60">Praproses</text>
+              <text x="410" y="78">Data</text>
+
+              <text x="580" y="60">Pemodelan</text>
+              <text x="580" y="78">&amp; Pelatihan</text>
+
+              <text x="750" y="60">Evaluasi</text>
+              <text x="750" y="78">Model</text>
+
+              <text x="410" y="200">Diseminasi</text>
+              <text x="410" y="218">&amp; Publikasi</text>
+            </g>
+
+            <g stroke="#16233a" stroke-width="2" fill="none" marker-end="url(#panah)">
+              <line x1="130" y1="65" x2="176" y2="65"></line>
+              <line x1="300" y1="65" x2="346" y2="65"></line>
+              <line x1="470" y1="65" x2="516" y2="65"></line>
+              <line x1="640" y1="65" x2="686" y2="65"></line>
+              <path d="M750 100 V205 H474"></path>
+              <path d="M810 65 H835 V140 H580 V104" stroke="#8c1c2b" stroke-dasharray="6 4"></path>
+            </g>
+
+            <text x="700" y="133" font-family="Helvetica, Arial, sans-serif"
+                  font-size="12" fill="#5b6878" text-anchor="middle">
+              umpan balik bila akurasi belum memadai
+            </text>
+          </svg>
+
+          <figcaption>
+            <strong>Gambar 1.</strong> Diagram alur metodologi riset enam tahap.
+            Garis putus-putus menandai iterasi perbaikan model yang dijalankan
+            apabila hasil evaluasi belum mencapai ambang akurasi yang
+            ditetapkan.
+          </figcaption>
+        </figure>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>
+        &copy; 2026 Departemen Teknik Informatika, Fakultas Teknik, Universitas
+        Hasanuddin. Disusun sebagai tugas mandiri modul 2 &mdash; standardisasi
+        konten HTML5.
+      </p>
+    </footer>
+
+  </div>
+</body>
+</html>
