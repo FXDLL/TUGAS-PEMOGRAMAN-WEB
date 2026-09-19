@@ -1,0 +1,196 @@
+/* =========================================================
+   04-tugas-style.css
+   Prototipe Portal Jurnal Ilmiah Multi-Kolom
+   ========================================================= */
+
+:root {
+  --warna-navbar: #1f2937;
+  --warna-navbar-hover: #374151;
+  --warna-teks-navbar: #f9fafb;
+  --warna-bg-halaman: #f4f5f7;
+  --warna-border: #e2e4e9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--warna-bg-halaman);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* =========================================================
+   1. NAVBAR — Flexbox murni (tanpa komponen navbar Bootstrap)
+   ========================================================= */
+.site-navbar {
+  background-color: var(--warna-navbar);
+  padding: 0.75rem 1.5rem;
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.navbar-brand-custom {
+  color: var(--warna-teks-navbar);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.navbar-links a {
+  color: var(--warna-teks-navbar);
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.25rem 0.25rem;
+  border-radius: 4px;
+  transition: background-color 0.15s ease;
+}
+
+.navbar-links a:hover {
+  background-color: var(--warna-navbar-hover);
+}
+
+/* Ponsel: tautan navbar merapat vertikal */
+@media (max-width: 767.98px) {
+  .navbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 0.25rem;
+  }
+
+  .navbar-links a {
+    width: 100%;
+    padding: 0.4rem 0.25rem;
+  }
+}
+
+/* =========================================================
+   2. LAYOUT UTAMA — CSS Grid 3 kolom kustom
+   ========================================================= */
+.main-layout {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  align-items: start;
+
+  /* Default (mobile-first): satu kolom, seluruh elemen bertumpuk */
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "sidebar"
+    "articles"
+    "right";
+}
+
+.col-sidebar {
+  grid-area: sidebar;
+}
+
+.col-articles {
+  grid-area: articles;
+}
+
+.col-right {
+  grid-area: right;
+}
+
+/* Tablet (>= 768px): sidebar + daftar artikel berdampingan,
+   kolom kanan turun ke bawah (full width) */
+@media (min-width: 768px) {
+  .main-layout {
+    grid-template-columns: 200px 1fr;
+    grid-template-areas:
+      "sidebar articles"
+      "right    right";
+  }
+}
+
+/* Layar lebar (>= 992px): tiga kolom penuh berdampingan
+   sidebar 200px | daftar artikel fleksibel | kolom kanan 220px */
+@media (min-width: 992px) {
+  .main-layout {
+    grid-template-columns: 200px 1fr 220px;
+    grid-template-areas:
+      "sidebar articles right";
+  }
+}
+
+/* =========================================================
+   3. Kolom kiri — Sidebar
+   ========================================================= */
+.col-sidebar {
+  background-color: #ffffff;
+  border: 1px solid var(--warna-border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.sidebar-list li {
+  margin-bottom: 0.4rem;
+}
+
+.sidebar-list a {
+  color: #374151;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.sidebar-list a:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+/* =========================================================
+   4. Kolom tengah — Grid mikro kartu artikel
+   auto-fit + minmax agar jumlah kolom menyesuaikan lebar
+   ========================================================= */
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.article-card {
+  height: 100%;
+  border: 1px solid var(--warna-border);
+}
+
+.article-card .card-title {
+  min-height: 2.6em;
+}
+
+/* =========================================================
+   5. Kolom kanan — Info tambahan
+   ========================================================= */
+.right-box {
+  background-color: #ffffff;
+  border: 1px solid var(--warna-border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* =========================================================
+   6. Footer
+   ========================================================= */
+.site-footer {
+  background-color: var(--warna-navbar);
+  color: var(--warna-teks-navbar);
+}
